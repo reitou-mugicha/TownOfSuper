@@ -68,7 +68,9 @@ namespace TownOfSuper.Patches
                         case "cm":
                             Chat.SendPrivateChat("コマンドヘルプ: \n.help [commands, functions] : ヘルプを表示する\n" +
                                                  ".kick <PlayerName> : プレイヤーをキックする\n" +
-                                                 ".ban <PlayerName> : プレイヤーをバンする");
+                                                 ".ban <PlayerName> : プレイヤーをバンする\n" +
+                                                 ".chat send : 定型文を表示\n" +
+                                                 ".chat set <text> : 定型文を設定");
                             handled = true;
                             break;
 
@@ -76,6 +78,7 @@ namespace TownOfSuper.Patches
                         case "fc":
                             Chat.SendPrivateChat("機能ヘルプ: \nF10 : 廃村\n" +
                                                  "F1 : チャットバグ修正\n" +
+                                                 "CTRL + K : 部屋コードコピー\n" +
                                                  "CTRL + A : 全選択\n" +
                                                  "CTRL + Z : 元に戻す\n" +
                                                  "CTRL + Y : やり直し\n" +
@@ -85,6 +88,34 @@ namespace TownOfSuper.Patches
                         break;
                     }
                     Chat.SendPrivateChat(".help [commands, functions] : ヘルプを表示");
+                    handled = true;
+                    break;
+                case ".chat":
+                    switch(args[1])
+                    {
+                        case "set":
+                            if(TosPlugin.StereotypedText == null) return true;
+                            if(args[2] != null)
+                            {
+                                TosPlugin.StereotypedText.SetSerializedValue(args[2]);
+                                Chat.SendPrivateChat($"定型文を\"{args[2]}\"に設定しました");
+                                handled = true;
+                                break;
+                            }
+                            Chat.SendPrivateChat("引数が不足しています");
+                            Chat.SendPrivateChat("使用方法:\n.chat set <text>");
+                            handled = true;
+                            break;
+                        case "send":
+                            if(TosPlugin.StereotypedText == null) return true;
+                            Chat.SendAllChat(TosPlugin.StereotypedText.Value);
+                            handled = true;
+                            break;
+                    }
+                    Chat.SendPrivateChat("使用方法が違います");
+                    Chat.SendPrivateChat("使用方法:\n.chat set <text> : 定型文を設定\n" +
+                                         ".chat send : 定型文を表示");
+                    handled = true;
                     break;
             }
             
@@ -100,7 +131,7 @@ namespace TownOfSuper.Patches
     {
         public static void SendPrivateChat(string text)
         {
-            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, text);
+            DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "[Private] \n" + text);
         }
 
         public static void SendAllChat(string text)
