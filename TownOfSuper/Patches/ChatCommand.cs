@@ -70,7 +70,11 @@ namespace TownOfSuper.Patches
                                                  ".kick <PlayerName> : プレイヤーをキックする\n" +
                                                  ".ban <PlayerName> : プレイヤーをバンする\n" +
                                                  ".chat send : 定型文を表示\n" +
-                                                 ".chat set <text> : 定型文を設定");
+                                                 ".chat set <text> : 定型文を設定\n" +
+                                                 ".kill <PlayerName> : プレイヤーをキルする(フリープレイのみ)\n" +
+                                                 ".revive <PlayerName> : プレイヤーを復活させる(フリープレイのみ)\n" +
+                                                 ".tp <PlayerName> : プレイヤーをテレポートする(フリープレイのみ)\n" +
+                                                 ".tpme <PlayerName> : プレイヤーを自分にテレポートする(フリープレイのみ)");
                             handled = true;
                             break;
 
@@ -116,6 +120,74 @@ namespace TownOfSuper.Patches
                     Chat.SendPrivateChat("使用方法:\n.chat set <text> : 定型文を設定\n" +
                                          ".chat send : 定型文を表示");
                     handled = true;
+                    break;
+                case ".kill":
+                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    {
+                        string killPlayerName = args[1];
+                        PlayerControl killTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(killPlayerName));
+                        if(killTarget != null)
+                        {
+                            killTarget.MurderPlayer(killTarget);
+                            Chat.SendPrivateChat($"{killTarget.Data.PlayerName}をキルしました");
+                            handled = true;
+                        } else {
+                            Chat.SendPrivateChat($"{killPlayerName}は存在しません");
+                            Chat.SendPrivateChat("使用方法: \n.kill <PlayerName>");
+                            handled = true;
+                        }
+                    }
+                    break;
+                case ".revive":
+                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    {
+                        string revivePlayerName = args[1];
+                        PlayerControl reviveTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(revivePlayerName));
+                        if(reviveTarget != null)
+                        {
+                            reviveTarget.Revive();
+                            Chat.SendPrivateChat($"{reviveTarget.Data.PlayerName}を復活しました");
+                            handled = true;
+                        } else {
+                            Chat.SendPrivateChat($"{revivePlayerName}は存在しません");
+                            Chat.SendPrivateChat("使用方法: \n.revive <PlayerName>");
+                            handled = true;
+                        }
+                    }
+                    break;
+                case ".tp":
+                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    {
+                        string tpPlayerName = args[1];
+                        PlayerControl tpTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(tpPlayerName));
+                        if(tpTarget != null)
+                        {
+                            PlayerControl.LocalPlayer.transform.position = tpTarget.transform.position;
+                            Chat.SendPrivateChat($"{PlayerControl.LocalPlayer.Data.PlayerName}を{tpTarget.Data.PlayerName}をテレポートしました");
+                            handled = true;
+                        } else {
+                            Chat.SendPrivateChat($"{tpPlayerName}は存在しません");
+                            Chat.SendPrivateChat("使用方法: \n.tp <PlayerName>");
+                            handled = true;
+                        }
+                    }
+                    break;
+                case ".tpme":
+                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    {
+                        string tpmePlayerName = args[1];
+                        PlayerControl tpmeTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(tpmePlayerName));
+                        if(tpmeTarget != null)
+                        {
+                            tpmeTarget.transform.position = PlayerControl.LocalPlayer.transform.position;
+                            Chat.SendPrivateChat($"{tpmeTarget.Data.PlayerName}を自分にテレポートしました");
+                            handled = true;
+                        } else {
+                            Chat.SendPrivateChat($"{tpmePlayerName}は存在しません");
+                            Chat.SendPrivateChat("使用方法: \n.tpme <PlayerName>");
+                            handled = true;
+                        }
+                    }
                     break;
             }
             
