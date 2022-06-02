@@ -105,21 +105,25 @@ namespace TownOfSuper.Patches
                                 Chat.SendPrivateChat($"定型文を\"{args[2]}\"に設定しました");
                                 handled = true;
                                 break;
+                            } else if(args[2] == null) {
+                                Chat.SendPrivateChat("引数が不足しています");
+                                Chat.SendPrivateChat("使用方法:\n.chat set <text>");
+                                handled = true;
+                                break;
                             }
-                            Chat.SendPrivateChat("引数が不足しています");
-                            Chat.SendPrivateChat("使用方法:\n.chat set <text>");
-                            handled = true;
                             break;
                         case "send":
                             if(TosPlugin.StereotypedText == null) return true;
                             Chat.SendAllChat(TosPlugin.StereotypedText.Value);
                             handled = true;
                             break;
+                        case "":
+                            Chat.SendPrivateChat("使用方法が違います");
+                            Chat.SendPrivateChat("使用方法:\n.chat set <text> : 定型文を設定\n" +
+                                                 ".chat send : 定型文を表示");
+                            handled = true;
+                            break;
                     }
-                    Chat.SendPrivateChat("使用方法が違います");
-                    Chat.SendPrivateChat("使用方法:\n.chat set <text> : 定型文を設定\n" +
-                                         ".chat send : 定型文を表示");
-                    handled = true;
                     break;
                 case ".kill":
                     if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
