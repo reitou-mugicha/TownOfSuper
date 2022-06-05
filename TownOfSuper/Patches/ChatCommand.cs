@@ -1,7 +1,8 @@
-/*Source Code by TheOtherRoles GM KiyoMugi Edition & Town Of Host*/
+/*Source Code by TheOtherRoles GM KiyoMugi Edition & Town Of Host & Town Of Plus. Thank you*/
 
 using HarmonyLib;
 using System.Linq;
+using Hazel;
 
 namespace TownOfSuper.Patches
 {
@@ -203,6 +204,19 @@ namespace TownOfSuper.Patches
             return !handled;
         }
     }
+
+    /*[HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
+    public class ChatUpdatePatch
+    {
+        public static void Postfix(ChatController __instance)
+        {
+            if (!AmongUsClient.Instance.AmHost) return;
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.SendChat, SendOption.None);
+            writer.Write("msg");
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+    }*/
+
     public class Chat
     {
         public static void SendPrivateChat(string text)
