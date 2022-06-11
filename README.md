@@ -16,7 +16,7 @@ This mod is not affiliated with Among Us or Innersloth LLC, and the content cont
 .ban (PlayerName)  
 
 ## 参考にさせてもらったMOD
-[TheOtherRolesGM](https://github.com/yukinogatari/TheOtherRoles-GM) Yukinogatari様  
+[TheOtherRolesGM](https://github.com/yukinogatari/TheOtherRoles-GM) yukinogatari様  
 [SuperNewRoles](https://github.com/ykundesu/SuperNewRoles) ykundesu様  
 [TownOfHost](https://github.com/tukasa0001/TownOfHost) tukasa0001様  
 [TownOfPlus](https://github.com/tugaru1975/TownOfPlus) tugaru1975様  
