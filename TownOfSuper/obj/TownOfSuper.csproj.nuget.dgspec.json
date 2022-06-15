@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj": {}
+    "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj": {
+    "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj",
+        "projectUniqueName": "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj",
         "projectName": "TownOfSuper",
-        "projectPath": "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj",
+        "projectPath": "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj",
         "packagesPath": "C:\\Users\\向野　蒼人\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\obj\\",
+        "outputPath": "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\NuGet.Config",
-          "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\NuGet.Config",
+          "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\NuGet.Config",
+          "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\NuGet.Config",
           "C:\\Users\\向野　蒼人\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",

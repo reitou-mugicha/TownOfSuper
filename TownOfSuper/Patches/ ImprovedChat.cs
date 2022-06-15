@@ -90,7 +90,6 @@ namespace TownOfSuper.Patches
             }
         }
         private static string text = "";
-        private static bool CopyAndPaste = false;
         //Control+Vでペースト
         [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
         public static class Paste
@@ -123,7 +122,6 @@ namespace TownOfSuper.Patches
                             {
                                 //コマンドを対応させる
                                 text = (CopyWord);
-                                CopyAndPaste = true;
                             }
                             else
                             {

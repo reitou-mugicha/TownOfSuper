@@ -11,17 +11,16 @@ namespace TownOfSuper
     public class TosPlugin : BasePlugin
     {
         public const String Id = "jp.reitou-mugicha.tonwofsuper";
-        public const String Version = "1.0.0";
+        public const String Version = "1.1.1";
 
         public static ConfigEntry<bool>? debugTool { get; set; }
-
-        public static List<(string, byte)>? MessagesToSend;
+        public static ConfigEntry<string>? StereotypedText { get; set; }
 
         public Harmony Harmony = new Harmony(Id);
         public override void Load()
         {
             debugTool = Config.Bind("Client Options", "Debug Tool", false);
-            MessagesToSend = new List<(string, byte)>();
+            StereotypedText = Config.Bind("Client Options", "StereotypedText", "TownOfSuper定型文");
 
             Harmony.PatchAll();
         }

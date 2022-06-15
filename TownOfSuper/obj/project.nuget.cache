@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lh/zcZ25rc22viBpzzpCc6SL22aJT8weUEtECF6SS4nkq0gaZ1RnrygF9jsSao65P6Bo92+GcubcJNg+ggDO1g==",
+  "dgSpecHash": "riJijLeeeKs0GlBzAcjABRiIjuoRQA6dk8q8ija6bOlGMDhQ18otkhfG1UtUfacLKH73jIAvmC/9EmJ2zvNoaw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj",
+  "projectFilePath": "c:\\Users\\向野　蒼人\\Desktop\\among us mod\\TownOfSuper\\TownOfSuper\\TownOfSuper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\向野　蒼人\\.nuget\\packages\\amongus.gamelibs.steam\\2022.3.29\\amongus.gamelibs.steam.2022.3.29.nupkg.sha512",
     "C:\\Users\\向野　蒼人\\.nuget\\packages\\bepinex.autoplugin\\1.0.1\\bepinex.autoplugin.1.0.1.nupkg.sha512",
