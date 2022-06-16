@@ -1,4 +1,5 @@
 .vs
+TownOfSuper/obj
 TownOfSuper/obj/Debug/netstandard2.1/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 TownOfSuper/obj/Debug/netstandard2.1/TownOfSuper.AssemblyInfo.cs
 TownOfSuper/obj/Debug/netstandard2.1/TownOfSuper.AssemblyInfoInputs.cache
