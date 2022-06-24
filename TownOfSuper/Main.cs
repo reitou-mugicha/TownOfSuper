@@ -10,7 +10,7 @@ namespace TownOfSuper
     [BepInPlugin(Id, "TownOfSuper", Version)]
     public class TosPlugin : BasePlugin
     {
-        public const String Id = "jp.reitou-mugicha.tonwofsuper";
+        public const String Id = "jp.reitou-mugicha.townofsuper";
         public const String Version = "1.1.0-updateFix";
 
         public static ConfigEntry<bool>? debugTool { get; set; }
