@@ -6,8 +6,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using System.Collections;
-using Hazel;
 
 
 namespace TownOfSuper {
