@@ -52,7 +52,7 @@ namespace TownOfSuper.Patches
                 new LateTask(() =>
                 {
                     __instance.SetVisible(true);
-                }, 0f, "AntiChatBag");
+                }, 0f, "AntiChatBug");
             }
         }
     }

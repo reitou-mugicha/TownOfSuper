@@ -2,6 +2,8 @@
 
 using HarmonyLib;
 using System.Linq;
+using Assets.CoreScripts;
+using System;
 using Hazel;
 
 namespace TownOfSuper.Patches
@@ -15,14 +17,14 @@ namespace TownOfSuper.Patches
             bool handled = false;
             string[] args = text.Split(' ');
 
-            switch(args[0])
+            switch (args[0])
             {
                 case ".kick":
                     string kickPlayerName = args[1];
                     PlayerControl kickTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(kickPlayerName));
-                    if(AmongUsClient.Instance != null && AmongUsClient.Instance.CanBan())
+                    if (AmongUsClient.Instance != null && AmongUsClient.Instance.CanBan())
                     {
-                        if(kickTarget is null)
+                        if (kickTarget is null)
                         {
                             Chat.SendPrivateChat("プレイヤーが存在しない、または引数が間違っています");
                             Chat.SendPrivateChat("使用方法: \n.kick <PlayerName>");
@@ -31,7 +33,7 @@ namespace TownOfSuper.Patches
                         }
 
                         var client = AmongUsClient.Instance.GetClient(kickTarget.OwnerId);
-                        if(client != null)
+                        if (client != null)
                         {
                             AmongUsClient.Instance.KickPlayer(client.Id, false);
                             Chat.SendAllChat($"{client.PlayerName}をキックしました");
@@ -42,9 +44,9 @@ namespace TownOfSuper.Patches
                 case ".ban":
                     string banPlayerName = args[1];
                     PlayerControl banTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(banPlayerName));
-                    if(AmongUsClient.Instance != null && AmongUsClient.Instance.CanBan())
+                    if (AmongUsClient.Instance != null && AmongUsClient.Instance.CanBan())
                     {
-                        if(banTarget is null)
+                        if (banTarget is null)
                         {
                             Chat.SendPrivateChat("プレイヤーが存在しない、または引数が間違っています");
                             Chat.SendPrivateChat("使用方法: \n.ban <PlayerName>");
@@ -53,7 +55,7 @@ namespace TownOfSuper.Patches
                         }
 
                         var client = AmongUsClient.Instance.GetClient(banTarget.OwnerId);
-                        if(client != null)
+                        if (client != null)
                         {
                             AmongUsClient.Instance.KickPlayer(client.Id, false);
                             Chat.SendAllChat($"{client.PlayerName}をバンしました");
@@ -63,7 +65,7 @@ namespace TownOfSuper.Patches
                     break;
                 case ".help":
                 case ".h":
-                    switch(args[1].ToLower()) //.helpの第一引数
+                    switch (args[1].ToLower()) //.helpの第一引数
                     {
                         case "commands":
                         case "cm":
@@ -90,23 +92,25 @@ namespace TownOfSuper.Patches
                                                  "CTRL + X : 切り取り\n" +
                                                  "SHIFT + BackSpace : 全削除");
                             handled = true;
-                        break;
+                            break;
                     }
                     Chat.SendPrivateChat(".help [commands, functions] : ヘルプを表示");
                     handled = true;
                     break;
                 case ".chat":
-                    switch(args[1])
+                    switch (args[1])
                     {
                         case "set":
-                            if(TosPlugin.StereotypedText == null) return true;
-                            if(args[2] != null)
+                            if (TosPlugin.StereotypedText == null) return true;
+                            if (args[2] != null)
                             {
                                 TosPlugin.StereotypedText.SetSerializedValue(args[2]);
                                 Chat.SendPrivateChat($"定型文を\"{args[2]}\"に設定しました");
                                 handled = true;
                                 break;
-                            } else if(args[2] == null) {
+                            }
+                            else if (args[2] == null)
+                            {
                                 Chat.SendPrivateChat("引数が不足しています");
                                 Chat.SendPrivateChat("使用方法:\n.chat set <text>");
                                 handled = true;
@@ -114,7 +118,7 @@ namespace TownOfSuper.Patches
                             }
                             break;
                         case "send":
-                            if(TosPlugin.StereotypedText == null) return true;
+                            if (TosPlugin.StereotypedText == null) return true;
                             Chat.SendAllChat(TosPlugin.StereotypedText.Value);
                             handled = true;
                             break;
@@ -127,16 +131,18 @@ namespace TownOfSuper.Patches
                     }
                     break;
                 case ".kill":
-                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    if (TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
                     {
                         string killPlayerName = args[1];
                         PlayerControl killTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(killPlayerName));
-                        if(killTarget != null)
+                        if (killTarget != null)
                         {
                             killTarget.MurderPlayer(killTarget);
                             Chat.SendPrivateChat($"{killTarget.Data.PlayerName}をキルしました");
                             handled = true;
-                        } else {
+                        }
+                        else
+                        {
                             Chat.SendPrivateChat($"{killPlayerName}は存在しません");
                             Chat.SendPrivateChat("使用方法: \n.kill <PlayerName>");
                             handled = true;
@@ -144,16 +150,18 @@ namespace TownOfSuper.Patches
                     }
                     break;
                 case ".revive":
-                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    if (TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
                     {
                         string revivePlayerName = args[1];
                         PlayerControl reviveTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(revivePlayerName));
-                        if(reviveTarget != null)
+                        if (reviveTarget != null)
                         {
                             reviveTarget.Revive();
                             Chat.SendPrivateChat($"{reviveTarget.Data.PlayerName}を復活しました");
                             handled = true;
-                        } else {
+                        }
+                        else
+                        {
                             Chat.SendPrivateChat($"{revivePlayerName}は存在しません");
                             Chat.SendPrivateChat("使用方法: \n.revive <PlayerName>");
                             handled = true;
@@ -161,16 +169,18 @@ namespace TownOfSuper.Patches
                     }
                     break;
                 case ".tp":
-                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    if (TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
                     {
                         string tpPlayerName = args[1];
                         PlayerControl tpTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(tpPlayerName));
-                        if(tpTarget != null)
+                        if (tpTarget != null)
                         {
                             PlayerControl.LocalPlayer.transform.position = tpTarget.transform.position;
                             Chat.SendPrivateChat($"{PlayerControl.LocalPlayer.Data.PlayerName}を{tpTarget.Data.PlayerName}をテレポートしました");
                             handled = true;
-                        } else {
+                        }
+                        else
+                        {
                             Chat.SendPrivateChat($"{tpPlayerName}は存在しません");
                             Chat.SendPrivateChat("使用方法: \n.tp <PlayerName>");
                             handled = true;
@@ -178,16 +188,18 @@ namespace TownOfSuper.Patches
                     }
                     break;
                 case ".tpme":
-                    if(TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+                    if (TosPlugin.debugTool is not null && TosPlugin.debugTool.Value || AmongUsClient.Instance.GameMode == GameModes.FreePlay)
                     {
                         string tpmePlayerName = args[1];
                         PlayerControl tpmeTarget = PlayerControl.AllPlayerControls.ToArray().ToList().FirstOrDefault(x => x.Data.PlayerName.Equals(tpmePlayerName));
-                        if(tpmeTarget != null)
+                        if (tpmeTarget != null)
                         {
                             tpmeTarget.transform.position = PlayerControl.LocalPlayer.transform.position;
                             Chat.SendPrivateChat($"{tpmeTarget.Data.PlayerName}を自分にテレポートしました");
                             handled = true;
-                        } else {
+                        }
+                        else
+                        {
                             Chat.SendPrivateChat($"{tpmePlayerName}は存在しません");
                             Chat.SendPrivateChat("使用方法: \n.tpme <PlayerName>");
                             handled = true;
@@ -195,7 +207,7 @@ namespace TownOfSuper.Patches
                     }
                     break;
             }
-            
+
             if (handled)
             {
                 __instance.TextArea.Clear();
@@ -205,7 +217,7 @@ namespace TownOfSuper.Patches
         }
     }
 
-    /*[HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
+    [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
     public class ChatUpdatePatch
     {
         public static void Postfix(ChatController __instance)
@@ -214,8 +226,9 @@ namespace TownOfSuper.Patches
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.SendChat, SendOption.None);
             writer.Write("msg");
             AmongUsClient.Instance.FinishRpcImmediately(writer);
+            __instance.TimeSinceLastMessage = 130f;
         }
-    }*/
+    }
 
     public class Chat
     {

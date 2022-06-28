@@ -35,7 +35,7 @@ namespace TownOfSuper
         }
 
         public static Texture2D? loadTextureFromDisk(string path) {
-            try {          
+            try {
                 if (File.Exists(path))     {
                     Texture2D texture = new Texture2D(2, 2, TextureFormat.ARGB32, true);
                     byte[] byteTexture = File.ReadAllBytes(path);
@@ -56,6 +56,5 @@ namespace TownOfSuper
             var il2cppArray = (Il2CppStructArray<byte>) data;
             return iCall_LoadImage.Invoke(tex.Pointer, il2cppArray.Pointer, markNonReadable);
         }
-
     }
 }

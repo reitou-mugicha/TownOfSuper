@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TownOfSuper.Patches
 {
-    public class  ImprovedChat
+    public class ImprovedChat
     {
         [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
         public static class Delete
@@ -69,7 +69,7 @@ namespace TownOfSuper.Patches
                 }
             }
         }
-        //Control+Cでコピー　Control+Xでカット 
+        //Control+Cでコピー　Control+Xでカット
         [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
         public static class CopyAndCut
         {
@@ -142,5 +142,6 @@ namespace TownOfSuper.Patches
                 }
             }
         }
+
     }
 }
