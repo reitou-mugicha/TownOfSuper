@@ -74,6 +74,7 @@ namespace TownOfSuper.Patches
                                                  ".ban <PlayerName> : プレイヤーをバンする\n" +
                                                  ".chat send : 定型文を表示\n" +
                                                  ".chat set <text> : 定型文を設定\n" +
+                                                 ".chat check : 定型文をチェック\n" +
                                                  ".kill <PlayerName> : プレイヤーをキルする(フリープレイのみ)\n" +
                                                  ".revive <PlayerName> : プレイヤーを復活させる(フリープレイのみ)\n" +
                                                  ".tp <PlayerName> : プレイヤーをテレポートする(フリープレイのみ)\n" +
@@ -118,6 +119,11 @@ namespace TownOfSuper.Patches
                         case "send":
                             if(TosPlugin.StereotypedText == null) return true;
                             Chat.SendAllChat(TosPlugin.StereotypedText.Value);
+                            handled = true;
+                            break;
+                        case "check":
+                            if(TosPlugin.StereotypedText == null) return true;
+                            Chat.SendPrivateChat("現在の定型文は" + TosPlugin.StereotypedText.Value + "です。");
                             handled = true;
                             break;
                         case "":
@@ -204,19 +210,6 @@ namespace TownOfSuper.Patches
                 __instance.quickChatMenu.ResetGlyphs();
             }
             return !handled;
-        }
-    }
-
-    [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
-    public class ChatUpdatePatch
-    {
-        public static void Postfix(ChatController __instance)
-        {
-            //if (!AmongUsClient.Instance.AmHost) return;
-            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.SendChat, SendOption.None);
-            writer.Write("msg");
-            AmongUsClient.Instance.FinishRpcImmediately(writer);
-            __instance.TimeSinceLastMessage = 130f;
         }
     }
 

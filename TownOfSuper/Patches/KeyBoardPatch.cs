@@ -17,13 +17,6 @@ namespace TownOfSuper.Patches
                 RPCEvents.ForceEnd();
             }
 
-            //コードコピー
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.K))
-            {
-                Chat.SendPrivateChat($"部屋コード{InnerNet.GameCode.IntToGameName(AmongUsClient.Instance.GameId)}をコピーしました");
-                GUIUtility.systemCopyBuffer = InnerNet.GameCode.IntToGameName(AmongUsClient.Instance.GameId);
-            }
-
             //F9で会議スキップ F1でいいと思うけど一応
             if(Input.GetKeyDown(KeyCode.F9) && AmongUsClient.Instance.AmHost)
             {

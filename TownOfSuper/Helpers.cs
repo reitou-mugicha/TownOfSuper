@@ -1,13 +1,20 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Linq;
 using UnhollowerBaseLib;
 using UnityEngine;
 
 namespace TownOfSuper
 {
-    public class Helpers
+    public static class Helpers
     {
+        public static string TrimAll(this string text, params string[] oldValue)
+        {
+            oldValue.ToList().ForEach(f => text = text.Replace(f, ""));
+            return text;
+        }
+
         public static Sprite? loadSpriteFromResources(string path, float pixelsPerUnit) {
             try {
                 Texture2D? texture = loadTextureFromResources(path);

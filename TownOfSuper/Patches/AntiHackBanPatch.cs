@@ -8,7 +8,7 @@ using HarmonyLib;
 using Hazel;
 using InnerNet;
 
-namespace TownOfSuper.Patches
+namespace SuperNewRoles.Helpers
 {
     class AntiHackingBan
     {
@@ -109,6 +109,9 @@ namespace TownOfSuper.Patches
                 {
                     DestroyableSingleton<Telemetry>.Instance.SendWho();
                 }
+                MessageWriter obj = AmongUsClient.Instance.StartRpc(__instance.NetId, 13, SendOption.None);
+                obj.Write(chatText);
+                obj.EndMessage();
                 __result = true;
                 return false;
             }

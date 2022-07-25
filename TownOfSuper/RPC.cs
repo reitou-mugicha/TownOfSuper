@@ -12,6 +12,7 @@ namespace TownOfSuper
     {
         public static void ForceEnd()
         {
+            if (ShipStatus.Instance == null) return;
             if (AmongUsClient.Instance.AmHost)
             {
                 ShipStatus.Instance.enabled = false;

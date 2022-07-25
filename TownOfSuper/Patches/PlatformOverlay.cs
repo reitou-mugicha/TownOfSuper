@@ -130,9 +130,9 @@ namespace TownOfSuper {
             Transform parent;
             parent = hudManager.transform;
 
-            infoUnderlay.transform.parent = parent;
-            infoOverlayRules.transform.parent = parent;
-            infoOverlayPlayer.transform.parent = parent;
+            infoUnderlay!.transform.parent = parent;
+            infoOverlayRules!.transform.parent = parent;
+            infoOverlayPlayer!.transform.parent = parent;
 
             infoUnderlay.color = new Color(0.1f, 0.1f, 0.1f, 0.88f);
             infoUnderlay.transform.localScale = new Vector3(6f, 5f, 1f);
@@ -214,7 +214,7 @@ namespace TownOfSuper {
 
                 GameOptionsData o = PlayerControl.GameOptions;
                 List<string> gameOptions = o.ToString().Split("\n", StringSplitOptions.RemoveEmptyEntries).ToList();
-                infoOverlayRules.text = string.Join("\n", gameOptions);
+                infoOverlayRules!.text = string.Join("\n", gameOptions);
                 string PlayerText = "<size=1.25>===プレイヤー名 : 機種名===</size>";
                 foreach (InnerNet.ClientData Client in AmongUsClient.Instance.allClients.ToArray())
                 {
@@ -229,7 +229,7 @@ namespace TownOfSuper {
                     PlayerText += $"\n<color=#{HEXcolor}>■</color>{PlayerName} : {Platform.Replace("Standalone", "")}";
                 }
 
-                infoOverlayPlayer.text = PlayerText;
+                infoOverlayPlayer!.text = PlayerText;
             }
         }
         public class PlayerVersion
