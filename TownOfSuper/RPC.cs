@@ -5,7 +5,7 @@ namespace TownOfSuper
 {
     public enum CustomRPC
     {
-        ForceEnd,
+        ForceEnd = 200,
     }
     
     public class RPCEvents

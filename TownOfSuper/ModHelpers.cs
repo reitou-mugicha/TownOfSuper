@@ -9,7 +9,7 @@ namespace TownOfSuper
             foreach (PlayerControl player in PlayerControl.AllPlayerControls)
                 if (player.PlayerId == id)
                     return player;
-            return null;
+            return null!;
         }
 
         public static string DeleteHTML(this string name)
