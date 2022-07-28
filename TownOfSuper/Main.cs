@@ -19,7 +19,7 @@ namespace TownOfSuper
     {
         #nullable enable
         public const String Id = "jp.reitou-mugicha.townofsuper";
-        public const String Version = "1.2.1.1";
+        public const String Version = "1.2.2";
 
         public static ConfigEntry<bool>? debugTool { get; set; }
         public static ConfigEntry<string>? StereotypedText { get; set; }
