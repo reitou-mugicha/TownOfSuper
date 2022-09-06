@@ -39,7 +39,7 @@ namespace TownOfSuper.Patches
                 playerControl.SetColor(color);
                 playerControl.SetHat(HatManager.Instance.allHats[hat].ProductId, color);
                 playerControl.SetPet(HatManager.Instance.allPets[pet].ProductId, color);
-                playerControl.SetVisor(HatManager.Instance.allVisors[visor].ProductId);
+                playerControl.SetVisor(HatManager.Instance.allVisors[visor].ProductId, color);
                 playerControl.SetSkin(HatManager.Instance.allSkins[skin].ProductId, color);
                 playerControl.SetNamePlate(HatManager.Instance.allNamePlates[nameplate].ProductId);
                 GameData.Instance.RpcSetTasks(playerControl.PlayerId, new byte[0]);
