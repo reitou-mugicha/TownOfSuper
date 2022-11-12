@@ -14,7 +14,7 @@ namespace TownOfSuper.Patches
             public static void Prefix(ChatController __instance)
             {
                 if (!HudManager.Instance.Chat.IsOpen) return;
-                if (SaveManager.chatModeType != 1) return;
+                if (AmongUs.Data.DataManager.Settings.Multiplayer.chatMode == (InnerNet.QuickChatModes)1) return;
                 if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Backspace))
                 {
                     __instance.TextArea.Clear();
@@ -33,7 +33,7 @@ namespace TownOfSuper.Patches
             public static void Prefix(ChatController __instance)
             {
                 if (!HudManager.Instance.Chat.IsOpen) return;
-                if (SaveManager.chatModeType != 1) return;
+                if (AmongUs.Data.DataManager.Settings.Multiplayer.chatMode == (InnerNet.QuickChatModes)1) return;
                 if (__instance.TextArea.text != Text)
                 {
                     Text = __instance.TextArea.text;
@@ -76,7 +76,7 @@ namespace TownOfSuper.Patches
             public static void Prefix(ChatController __instance)
             {
                 if (!HudManager.Instance.Chat.IsOpen) return;
-                if (SaveManager.chatModeType != 1) return;
+                if (AmongUs.Data.DataManager.Settings.Multiplayer.chatMode == (InnerNet.QuickChatModes)1) return;
                 if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.X))
                 {
                     GUIUtility.systemCopyBuffer = __instance.TextArea.text;
@@ -97,7 +97,7 @@ namespace TownOfSuper.Patches
             public static void Prefix(ChatController __instance)
             {
                 if (!HudManager.Instance.Chat.IsOpen) return;
-                if (SaveManager.chatModeType != 1) return;
+                if (AmongUs.Data.DataManager.Settings.Multiplayer.chatMode == (InnerNet.QuickChatModes)1) return;
                 if (Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.LeftControl))
                 {
                     bool Shift = false;

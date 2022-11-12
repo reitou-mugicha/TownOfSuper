@@ -31,13 +31,13 @@ namespace TownOfSuper.Patches
     {
         public static void Prefix()
         {
-            SaveManager.chatModeType = 1;
-            SaveManager.isGuest = false;
+            AmongUs.Data.DataManager.Settings.Multiplayer.chatMode = (InnerNet.QuickChatModes)1;
+            //SaveManager.isGuest = false;
         }
         public static void Postfix(ChatController __instance)
         {
-            SaveManager.chatModeType = 1;
-            SaveManager.isGuest = false;
+            AmongUs.Data.DataManager.Settings.Multiplayer.chatMode = (InnerNet.QuickChatModes)1;
+            //SaveManager.isGuest = false;
             if (Input.GetKeyDown(KeyCode.F1))
             {
                 if (!__instance.isActiveAndEnabled) return;
